@@ -3,6 +3,22 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
+class InputTypeBase(BaseModel):
+    name : str
+    type : str
+    tag : str
+    description : Optional[str] = None
+    is_active : bool
+
+class InputTypeCreate(InputTypeBase):
+    pass
+
+class InputType(InputTypeBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
 class ItemBase(BaseModel):
     title: str
     description: Optional[str] = None
