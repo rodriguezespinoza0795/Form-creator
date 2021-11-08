@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 user = 'root'
 password = ''
-host = '127.0.0.1:3308'
+host = '127.0.0.1:3306'
 database = 'test'
 SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://{}:{}@{}/{}'.format(user, password, host, database)
 

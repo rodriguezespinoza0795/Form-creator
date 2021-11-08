@@ -44,11 +44,11 @@ def read_users(skip: int = 0, db: Session = Depends(get_db)):
     return input_types
 
 @app.post("/input_types/", response_model=schemas.InputType)
-def create_input_type(inputtype: schemas.InputTypeCreate, db: Session = Depends(get_db)):
-    db_input_type = crud.get_input_type_by_name(db, name=inputtype.name)
+def create_input_type(input_types: schemas.InputTypeCreate, db: Session = Depends(get_db)):
+    db_input_type = crud.get_input_type_by_name(db, name=input_types.name)
     if db_input_type:
         raise HTTPException(status_code=400, detail="name already registered")
-    return crud.create_input_type(db=db, inputtype=inputtype)
+    return crud.create_input_type(db=db, input_types=input_types)
 
 
 @app.post("/users/", response_model=schemas.User)

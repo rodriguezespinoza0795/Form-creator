@@ -45,16 +45,16 @@
 	**EXAMPLE**
 	```sql
 	CREATE TABLE `c_form_input_types` (
-		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-		`name` varchar(100) NOT NULL,
-		`type` varchar(45) NOT NULL,
-		`tag` varchar(45) NOT NULL,
-		`description` varchar(255) DEFAULT NULL,
-		`is_active` tinyint(4) NOT NULL DEFAULT 1,
-		`created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-		`updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-		PRIMARY KEY (`id`),
-		UNIQUE KEY `name` (`name`)
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`name` varchar(100) NOT NULL,
+	`type` varchar(45) NOT NULL,
+	`tag` varchar(45) NOT NULL,
+	`description` varchar(255) DEFAULT NULL,
+	`is_active` tinyint(4) NOT NULL DEFAULT 1,
+	`created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+	`updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `name` (`name`)
 	);
 	``` 
 2. **Add model in models.py**  
@@ -63,9 +63,9 @@
 	class Input_types(Base):
 		__tablename__ = "c_form_input_types"
 
-		id = Column(Integer, primary_key=True, index=True)
+		id = Column(Integer, primary_key=True, index=True, unique=True)
 		name = Column(String(100),unique=True)
-		type = Column(String(45))
+		type = Column(String(45), primary_key=True)
 		tag = Column(String(45))
 		description = Column(String(255))
 		is_active = Column(Boolean, default=True)
@@ -74,16 +74,17 @@
 	**EXAMPLE**
 	```python
 	class InputTypeBase(BaseModel):
-		id: int
 		name : str
 		type : str
 		tag : str
 		description : Optional[str] = None
 		is_active : bool
 
+	class InputTypeCreate(InputTypeBase):
+		pass
+
 	class InputType(InputTypeBase):
-    id: int
-    name: str
+		id: int
 
 		class Config:
 			orm_mode = True

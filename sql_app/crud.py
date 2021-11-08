@@ -6,12 +6,20 @@ from . import models, schemas
 def get_input_types(db: Session, skip: int = 0):
     return db.query(models.Input_types).offset(skip).all()
 
-def create_input_type(db: Session, input_type: schemas.InputTypeCreate):
-    db_input_type = models.Input_types(name=input_type.name, type=input_type.type, tag=input_type.tag, description=input_type.description, is_active=input_type.is_active)
+def create_input_type(db: Session, input_types: schemas.InputTypeCreate):
+    db_input_type = models.Input_types(**input_types.dict())
     db.add(db_input_type)
     db.commit()
     db.refresh(db_input_type)
     return db_input_type
+
+def create_user(db: Session, user: schemas.UserCreate):
+    fake_hashed_password = user.password + "notreallyhashed"
+    db_user = models.User(email=user.email, password=fake_hashed_password)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
 
 def get_input_type_by_name(db: Session, name: str):
     return db.query(models.Input_types).filter(models.Input_types.name == name).first()
