@@ -1,5 +1,5 @@
 
-const form_creator = document.getElementById("form_creator")
+const input_types = document.getElementById("input_types")
 
 const get_input_types = async () => {
     let response = await fetch('http://127.0.0.1:8000/input_types/')
@@ -10,12 +10,11 @@ const get_input_types = async () => {
         questions+=`<option data-icon="glyphicon glyphicon-eye-open" value=${item.id}>${item.name}</option>`
     })
 
-    input_types = `<select class="form-select" required>
-                        <option value="">Select option</option>
+    input_types_select = `<select class="form-select" required>
+                            <option value="">Select option</option>
                             ${questions}
-                    </select>
-                    <input type="submit" value="Create form" class="btn btn-primary"></input>`
-    form_creator.innerHTML = input_types;
+                        </select>`
+    input_types.innerHTML = input_types_select;
 }
 
 function json2array(json){
