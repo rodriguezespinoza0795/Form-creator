@@ -16,10 +16,32 @@
     <div class="container">
         <form id="form_creator">
             <div id="input_types"></div>
-            <div id="data_lob"></div>
-            <div id="data_oc"></div>
-            <div id="data_coach"></div>
-            <div id="data_agent"></div>
+            <div id="data_lob">
+                <label for="LOBDataList" class="form-label">LOB's</label>
+                <input class="form-control" list="LOBdatalistOptions" id="LOBDataList" aria-describedby="validationServer03Feedback"
+                    placeholder="Type to search...">
+                <datalist id="LOBdatalistOptions">
+                </datalist>
+                <div id="validationServer03Feedback" class="invalid-feedback">Please provide a valid LOB.</div>
+            </div>
+            <div id="data_oc">
+                <label for="OCDataList" class="form-label">OC's</label>
+                <input class="form-control" list="OCdatalistOptions" id="OCDataList" placeholder="Type to search...">
+                <datalist id="OCdatalistOptions">
+                </datalist>
+            </div>
+            <div id="data_coach">
+                <label for="COACHDataList" class="form-label">Coaches</label>
+                <input class="form-control" list="COACHdatalistOptions" id="COACHDataList" placeholder="Type to search...">
+                <datalist id="COACHdatalistOptions">
+                </datalist>
+            </div>
+            <div id="data_agent">
+                <label for="AGENTDataList" class="form-label">Agents</label>
+                <input class="form-control" list="AGENTdatalistOptions" id="AGENTDataList" placeholder="Type to search...">
+                <datalist id="AGENTdatalistOptions">
+                </datalist>
+            </div>
             <input type="submit" value="Create form" class="btn btn-primary"></input>
         </form>
     </div>
